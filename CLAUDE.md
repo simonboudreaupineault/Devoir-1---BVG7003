@@ -4,8 +4,6 @@ Analyse de l'expression de REM16 et FT1.
 Versionné volontairement : documente l'encadrement de l'IA pendant le développement.
 
 ## Contexte
-
-- Remise : **28 octobre 2026, 13 h (heure du Québec)**.
 - Question : l'expression de **REM16** (`LOC115699937`) et de **FT1** (`LOC115696989`) diffère-t-elle
   entre plantes mâles et femelles de *Cannabis sativa* ? Sont-ils des marqueurs candidats du sexe ?
 - Données : `data/2_Data_RNASeq_Cannabis_Sex.csv` (46 Mo, versionné).
@@ -27,10 +25,10 @@ code/run_analysis.R      # point d'entrée unique
 data/2_Data_RNASeq_Cannabis_Sex.csv
 figures/                 # sorties générées (créé par le script s'il n'existe pas)
 Question_1/ Question_2/ Question_4/   # livrables en classe — NE PAS TOUCHER
-Question_3/              # livrable de la question 3 (à venir)
 ```
 
-- Ne pas créer de fichiers hors de cette structure sans demander.
+- Ne pas créer de fichiers hors de cette structure sans demander. Pas de dossier `Question_3/` :
+  la question 3 est couverte par `code/run_analysis.R` et `figures/`.
 - `.gitignore` : `.Rhistory`, `.RData`, `.Rproj.user/`, `.DS_Store`. La bibliothèque de renv
   (`renv/library/`) est déjà exclue par `renv/.gitignore`.
 - Git ne versionne pas les dossiers vides : `code/` et `figures/` n'existeront dans un clone
