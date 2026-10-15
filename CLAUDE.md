@@ -1,5 +1,6 @@
-# CLAUDE.md — Analyse de l'expression de REM16 et FT1 (BVG-7003, Devoir 1)
+# CLAUDE.md — (BVG-7003, Devoir 1)
 
+Analyse de l'expression de REM16 et FT1.
 Versionné volontairement : documente l'encadrement de l'IA pendant le développement.
 
 ## Contexte
@@ -10,7 +11,7 @@ Versionné volontairement : documente l'encadrement de l'IA pendant le développ
 - Données : `data/2_Data_RNASeq_Cannabis_Sex.csv` (46 Mo, versionné).
   - Une ligne par gène (20 500), une colonne par plante (138). 1re colonne = identifiant du gène.
   - Sexe dans le nom des colonnes : `NNN_XX` = femelle (69), `NNN_XY` = mâle (69).
-  - Unité de normalisation : **À COMPLÉTER**. Ne jamais la deviner (la plage 4,7–22,8 suggère
+  - Unité de normalisation : Inconnue. Ne jamais la deviner (la plage 4,7–22,8 suggère
     du log2, non confirmé).
 - Problèmes de qualité connus :
   1. Seul `NA` du fichier : FT1 pour `011_XX` → exclure `011_XX` de toute l'analyse
@@ -21,15 +22,19 @@ Versionné volontairement : documente l'encadrement de l'IA pendant le développ
 ## Structure
 
 ```
-CLAUDE.md, README.md, BVG7003_devoir1.Rproj, renv.lock, renv/, .Rprofile
+CLAUDE.md, README.md, devoir1.Rproj, renv.lock, renv/, .Rprofile
 code/run_analysis.R      # point d'entrée unique
 data/2_Data_RNASeq_Cannabis_Sex.csv
-figures/                 # sorties générées
-question_1/ question_2/ question_4/   # livrables en classe — NE PAS TOUCHER
+figures/                 # sorties générées (créé par le script s'il n'existe pas)
+Question_1/ Question_2/ Question_4/   # livrables en classe — NE PAS TOUCHER
+Question_3/              # livrable de la question 3 (à venir)
 ```
 
-- Ne pas créer de fichiers hors de cette structure sans demander. Ne pas recréer `question_3/`.
-- `.gitignore` : `.Rhistory`, `.RData`, `.Rproj.user/`, `renv/library/`, `.DS_Store`.
+- Ne pas créer de fichiers hors de cette structure sans demander.
+- `.gitignore` : `.Rhistory`, `.RData`, `.Rproj.user/`, `.DS_Store`. La bibliothèque de renv
+  (`renv/library/`) est déjà exclue par `renv/.gitignore`.
+- Git ne versionne pas les dossiers vides : `code/` et `figures/` n'existeront dans un clone
+  que s'ils contiennent un fichier (d'où la création de `figures/` par le script).
 
 ## Exécution
 
@@ -37,7 +42,7 @@ question_1/ question_2/ question_4/   # livrables en classe — NE PAS TOUCHER
   (voie conseillée sous Windows).
 - Chemins avec `here::here()`; jamais de `setwd()` ni de chemin absolu.
 - `renv` pour les dépendances (minimum : readr, dplyr, tidyr, ggplot2, here); `renv::snapshot()`
-  à chaque ajout. Le script vérifie les paquets et indique `renv::restore()` sans rien installer.
+  à chaque ajout. Pour l'instant, `renv.lock` ne contient que `renv`. Le script vérifie les paquets et indique `renv::restore()` sans rien installer.
 - R 4.5.3. Le README couvre macOS/Linux et Windows, avec liens officiels R et RStudio.
 - Avant tout commit touchant code, données, `renv.lock` ou README : pousser, puis tester
   depuis un clone frais (`git clone https://github.com/simonboudreaupineault/Devoir-1---BVG7003.git`,
