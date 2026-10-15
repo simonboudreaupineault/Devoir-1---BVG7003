@@ -34,6 +34,14 @@ sex_colors <- c(Femelle = "#D55E00", Mâle = "#0072B2")
 # dès qu'elle est confirmée dans la source; elle sera affichée sur l'axe Y des figures.
 expression_unit <- "unité à confirmer"
 
+# Rappel des paramètres au démarrage : l'utilisateur voit tout de suite sur quoi porte
+# l'exécution, sans avoir à ouvrir le script.
+message(
+  "[00] Paramètres :\n",
+  "     Fichier d'entrée : ", file.path(input_dir, input_file_name), "\n",
+  "     Gènes : ", paste0(names(target_loci), " (", target_loci, ")", collapse = ", ")
+)
+
 
 # ---- 01. Vérification des paquets ----
 
@@ -62,6 +70,16 @@ suppressPackageStartupMessages({
   library(tidyr)
   library(ggplot2)
 })
+
+# Les versions affichées permettent de comparer deux exécutions : elles doivent
+# correspondre à celles de renv.lock.
+package_versions <- vapply(
+  required_packages, function(pkg) as.character(packageVersion(pkg)), character(1)
+)
+message(
+  "[01] Paquets chargés : ",
+  paste0(required_packages, " ", package_versions, collapse = ", "), "."
+)
 
 
 # ---- 02. Chargement des données ----

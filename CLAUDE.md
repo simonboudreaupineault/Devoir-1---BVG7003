@@ -43,10 +43,10 @@ Question_1/ Question_2/ Question_4/   # livrables en classe — NE PAS TOUCHER
   (voie conseillée sous Windows).
 - Chemins avec `here::here()`; jamais de `setwd()` ni de chemin absolu.
 - `renv` pour les dépendances (minimum : readr, dplyr, tidyr, ggplot2, here); `renv::snapshot()`
-  à chaque ajout. Pour l'instant, `renv.lock` ne contient que `renv`. Le script vérifie les paquets et indique `renv::restore()` sans rien installer.
+  à chaque ajout. Le script vérifie les paquets et indique `renv::restore()` sans rien installer.
 - R 4.5.3. Le README couvre macOS/Linux et Windows, avec liens officiels R et RStudio.
 - Avant tout commit touchant code, données, `renv.lock` ou README : pousser, puis tester
-  depuis un clone frais (`git clone https://github.com/simonboudreaupineault/Devoir-1---BVG7003.git`,
+  depuis un clone frais (`git clone https://github.com/simonboudreaupineault/devoir1_BVG7003.git`,
   `renv::restore(prompt = FALSE)`, `Rscript code/run_analysis.R`) → les trois figures doivent
   être produites sans intervention.
 
