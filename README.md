@@ -15,6 +15,13 @@ Le cœur de l'outil est un script R : [`code/run_analysis.R`](code/run_analysis.
 
 Le script permet d'analyser le fichier de données transcriptomiques [`data/2_Data_RNASeq_Cannabis_Sex.csv`](data/2_Data_RNASeq_Cannabis_Sex.csv).
 
+**Format des données.** Une ligne par gène (20 500) et une colonne par plante (138). La première colonne contient l'identifiant du gène. Le sexe est indiqué par le suffixe du nom de colonne : `NNN_XX` = femelle (69), `NNN_XY` = mâle (69). 
+
+**Problèmes de qualité traités par le script.**
+
+- La valeur de FT1 de la plante `011_XX` est manquante (seul `NA` du fichier). Cette plante est exclue de l'analyse pour les deux gènes, afin de les comparer sur les mêmes plantes (68 femelles, 69 mâles).
+- REM16 est nommé `Cannabis_LOC115699937` dans le fichier. Les gènes sont donc recherchés par leur identifiant de locus en fin de nom, et le script vérifie qu'une seule ligne correspond.
+
 Le script produit trois graphiques :
 
 - Boxplot de l'expression de REM16 selon le sexe : [`figures/REM16_boxplot_by_sex.png`](figures/REM16_boxplot_by_sex.png)
@@ -27,7 +34,7 @@ Les versions des paquets sont fixées avec le paquet R `renv` et tous les chemin
 
 **Prérequis**
 
-- [R](https://cran.r-project.org/) (version 4.5.3, celle fixée dans `renv.lock`)
+- [R](https://cran.r-project.org/) (version 4.5.3)
 - [Git](https://git-scm.com/downloads)
 - [RStudio Desktop](https://posit.co/download/rstudio-desktop/) (recommandé sous Windows)
 
@@ -42,13 +49,15 @@ cd devoir1_BVG7003
 
 Les versions exactes des paquets nécessaires au fonctionnement de l'outil sont dans `renv.lock`. Voici la marche à suivre pour les installer avant d'exécuter l'outil :
 
-*macOS et Linux* — dans un terminal, depuis la racine du dépôt :
+*Dans un terminal* (macOS, Linux, ou Windows si `Rscript` y est accessible), depuis la racine du dépôt :
 
 ```bash
-Rscript -e 'renv::restore(prompt = FALSE)'
+Rscript -e "renv::restore(prompt = FALSE)"
 ```
 
-*Windows* — `Rscript` est souvent inaccessible depuis le terminal, si c'est le cas passer par RStudio :
+Les guillemets doubles sont nécessaires : l'invite de commandes de Windows (y compris Anaconda Prompt) ne reconnaît pas les guillemets simples.
+
+*Windows, si `Rscript` n'est pas accessible depuis le terminal* — passer par RStudio :
 
 1. Ouvrir `devoir1.Rproj` dans RStudio.
 2. Dans la console de RStudio, exécuter `renv::restore()` et répondre `y` pour confirmer.
@@ -57,13 +66,13 @@ Rscript -e 'renv::restore(prompt = FALSE)'
 
 Le script doit être lancé depuis la racine du dépôt (ou via `devoir1.Rproj`).
 
-*macOS et Linux* — dans un terminal, depuis la racine du dépôt :
+*Dans un terminal* (macOS, Linux, ou Windows si `Rscript` y est accessible), depuis la racine du dépôt :
 
 ```bash
 Rscript code/run_analysis.R
 ```
 
-*Windows (via RStudio)* :
+*Windows, via RStudio* :
 
 1. Ouvrir `devoir1.Rproj`.
 2. Ouvrir `code/run_analysis.R`.
