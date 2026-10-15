@@ -68,9 +68,9 @@ Aucune exclusion silencieuse : afficher les n avant/après.
 
 - `figures/REM16_boxplot_by_sex.png`, `FT1_boxplot_by_sex.png`, `REM16_FT1_combined_by_sex.png`.
 - `geom_boxplot(outlier.shape = NA)` + `geom_jitter(height = 0)`.
-- n par groupe dans les étiquettes, calculé (pas écrit en dur). Axe Y avec l'unité réelle.
+- n par groupe dans les étiquettes, calculé. Axe Y : libellé générique « Niveau d'expression normalisé » (unité inconnue).
 - Pas de troncature d'axe trompeuse. Palette Okabe-Ito, mêmes couleurs partout.
-  Combinée : facettes par gène, échelles Y libres signalées.
+  Combinée : facettes par gène, même échelle Y pour les deux gènes (signalée dans la légende du README).
 - `ggsave()` PNG, 300 dpi, dimensions fixes. Pas de test statistique sauf justifié
   (avec taille d'effet).
 

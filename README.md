@@ -1,34 +1,35 @@
-# Devoir 1 — BVG 7003  | Outil d'analyse transcriptomique
+# Devoir 1 — BVG 7003 | Outil d'analyse transcriptomique
 
 ## Sommaire
 
 - [Aperçu](#aperçu)
 - [Installation de l'outil](#installation)
 - [Exécution de l'outil](#exécution)
-- [Résultats](#résultats)
 - [Structure du dépôt](#structure-du-dépôt)
+- [Résultats](#résultats)
 
 ## Aperçu
-Ce dépôt contient un outil d'analyse de l'expression génique normalisée de 138 plants de *Cannabis sativa*. Il compare l'expression de deux gènes, **REM16** (LOC115699937) et **FT1** (LOC115696989), entre plants mâles et femelles, afin d'évaluer leur potentiel comme marqueurs candidats du sexe.
+Ce dépôt contient un outil d'analyse de l'expression génique normalisée de 138 plantes de *Cannabis sativa* (137 retenues pour l'analyse). Il compare l'expression de deux gènes, **REM16** (LOC115699937) et **FT1** (LOC115696989), entre plantes mâles et femelles, afin d'évaluer leur potentiel comme marqueurs permettant le sexage des plantes.
 
-Le coeur de l'outil est un script R : `run_analysis.R`. 
+Le cœur de l'outil est un script R : [`code/run_analysis.R`](code/run_analysis.R).
 
-Le script permet d'analyser le fichier de données `2_Data_RNASeq_Cannabis_Sex.csv`. 
+Le script permet d'analyser le fichier de données transcriptomiques [`data/2_Data_RNASeq_Cannabis_Sex.csv`](data/2_Data_RNASeq_Cannabis_Sex.csv).
 
-Le script produit trois graphiques : 
+Le script produit trois graphiques :
 
-- Boxplot de l'expression de REM16 selon le sexe : `REM16_boxplot_by_sex.png`
-- Boxplot de l'expression de FT1 selon le sexe : `FT1_boxplot_by_sex.png`
-- Boxplot de l'expression de REM16 et FT1 selon le sexe : `REM16_FT1_combined_by_sex.png`
+- Boxplot de l'expression de REM16 selon le sexe : [`figures/REM16_boxplot_by_sex.png`](figures/REM16_boxplot_by_sex.png)
+- Boxplot de l'expression de FT1 selon le sexe : [`figures/FT1_boxplot_by_sex.png`](figures/FT1_boxplot_by_sex.png)
+- Boxplot de l'expression de REM16 et FT1 selon le sexe : [`figures/REM16_FT1_combined_by_sex.png`](figures/REM16_FT1_combined_by_sex.png)
 
-Les versions des paquets sont fixées avec le *package* R `renv` et tous les chemins sont relatifs à la racine du projet, pour que l'analyse soit reproductible sur n'importe quel ordinateur ayant cloné le repo depuis **GitHub**.
+Les versions des paquets sont fixées avec le paquet R `renv` et tous les chemins sont relatifs à la racine du projet, pour que l'analyse soit reproductible pour n'importe quel utilisateur ayant cloné le dépôt depuis **GitHub**.
 
 ## Installation
 
 **Prérequis**
 
-- [R](https://cran.r-project.org/)
-- [RStudio Desktop](https://posit.co/download/rstudio-desktop/) (Parfois nécessaire pour lancer depuis un ordinateur Windows)
+- [R](https://cran.r-project.org/) (version 4.5.3, celle fixée dans `renv.lock`)
+- [Git](https://git-scm.com/downloads)
+- [RStudio Desktop](https://posit.co/download/rstudio-desktop/) (recommandé sous Windows)
 
 **1. Obtenir le dépôt**
 
@@ -39,7 +40,7 @@ cd devoir1_BVG7003
 
 **2. Installer les paquets R**
 
-Les versions exactes des *packages* nécessaires au fonctionnement de l'outil sont dans `renv.lock`. Voici la marche à suivre pour les installer avant d'exécuter l'outil :
+Les versions exactes des paquets nécessaires au fonctionnement de l'outil sont dans `renv.lock`. Voici la marche à suivre pour les installer avant d'exécuter l'outil :
 
 *macOS et Linux* — dans un terminal, depuis la racine du dépôt :
 
@@ -68,8 +69,7 @@ Rscript code/run_analysis.R
 2. Ouvrir `code/run_analysis.R`.
 3. Cliquer sur *Source* (en haut à droite de l'éditeur).
 
-Les dossiers `figures/` et `results/` sont créés s'ils n'existent pas; les fichiers existants
-sont remplacés.
+Les dossiers `figures/` et `results/` sont créés s'ils n'existent pas; les fichiers existants sont remplacés.
 
 ## Structure du dépôt
 
@@ -78,13 +78,13 @@ devoir1_BVG7003/
 ├── code/
 │   └── run_analysis.R                  # script d'analyse
 ├── data/
-│   └── 2_Data_RNASeq_Cannabis_Sex.csv  # fichier de données fourni
+│   └── 2_Data_RNASeq_Cannabis_Sex.csv  # fichier de données analysé
 ├── figures/                            # boxplots générés par le script
 │   ├── REM16_boxplot_by_sex.png
 │   ├── FT1_boxplot_by_sex.png
 │   └── REM16_FT1_combined_by_sex.png
-├── results/                            
-│   └── REM16_FT1_expression_long.csv   # données filtrés pour REM16 et FT1
+├── results/
+│   └── REM16_FT1_expression_long.csv   # données filtrées pour REM16 et FT1
 ├── Question_1/                         # livrables réalisés en classe
 ├── Question_2/
 ├── Question_4/
@@ -95,3 +95,11 @@ devoir1_BVG7003/
 ├── CLAUDE.md                           # consignes données à l'assistant IA
 └── README.md
 ```
+
+## Résultats
+
+![Expression de REM16 et FT1 selon le sexe](figures/REM16_FT1_combined_by_sex.png)
+
+**Figure combinée.** Niveau d'expression normalisé de REM16 (gauche) et de FT1 (droite) chez les plantes femelles (XX, orange, n = 68) et mâles (XY, bleu, n = 69). Chaque point est une plante; les boîtes indiquent la médiane et l'écart interquartile. Les deux panneaux partagent la même échelle Y. L'unité de normalisation des données fournies n'est pas connue. La plante `011_XX` est exclue des deux gènes, car sa valeur de FT1 est manquante.
+
+Les figures par gène sont dans [`figures/REM16_boxplot_by_sex.png`](figures/REM16_boxplot_by_sex.png) et [`figures/FT1_boxplot_by_sex.png`](figures/FT1_boxplot_by_sex.png). Les valeurs exactes représentées sont dans [`results/REM16_FT1_expression_long.csv`](results/REM16_FT1_expression_long.csv).
