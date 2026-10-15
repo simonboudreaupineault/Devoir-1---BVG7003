@@ -1,1 +1,5 @@
-files/
+.Rproj.user
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
