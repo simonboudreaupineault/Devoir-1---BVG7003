@@ -23,7 +23,8 @@ Versionné volontairement : documente l'encadrement de l'IA pendant le développ
 CLAUDE.md, README.md, devoir1.Rproj, renv.lock, renv/, .Rprofile
 code/run_analysis.R      # point d'entrée unique
 data/2_Data_RNASeq_Cannabis_Sex.csv
-figures/                 # sorties générées (créé par le script s'il n'existe pas)
+figures/                 # figures générées (créé par le script s'il n'existe pas)
+results/                 # tableau de contrôle généré : REM16_FT1_expression_long.csv
 Question_1/ Question_2/ Question_4/   # livrables en classe — NE PAS TOUCHER
 ```
 
@@ -31,8 +32,10 @@ Question_1/ Question_2/ Question_4/   # livrables en classe — NE PAS TOUCHER
   la question 3 est couverte par `code/run_analysis.R` et `figures/`.
 - `.gitignore` : `.Rhistory`, `.RData`, `.Rproj.user/`, `.DS_Store`. La bibliothèque de renv
   (`renv/library/`) est déjà exclue par `renv/.gitignore`.
-- Git ne versionne pas les dossiers vides : `code/` et `figures/` n'existeront dans un clone
-  que s'ils contiennent un fichier (d'où la création de `figures/` par le script).
+- Git ne versionne pas les dossiers vides : `code/`, `figures/` et `results/` n'existeront dans
+  un clone que s'ils contiennent un fichier (d'où leur création par le script).
+- `results/REM16_FT1_expression_long.csv` : exactement le tableau reçu par ggplot2
+  (après exclusion de `011_XX`), écrit pour permettre de contrôler les données des figures.
 
 ## Exécution
 
