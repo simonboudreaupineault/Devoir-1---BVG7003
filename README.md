@@ -19,7 +19,7 @@ Le script permet d'analyser le fichier de données transcriptomiques [`data/2_Da
 
 **Problèmes de qualité traités par le script.**
 
-- La valeur de FT1 de la plante `011_XX` est manquante (seul `NA` du fichier). Cette plante est exclue de l'analyse pour les deux gènes, afin de les comparer sur les mêmes plantes (68 femelles, 69 mâles).
+- La valeur de FT1 de la plante `011_XX` est manquante (`NA`). Cette plante est exclue de l'analyse pour les deux gènes, afin de les comparer sur les mêmes plantes (68 femelles, 69 mâles).
 - REM16 est nommé `Cannabis_LOC115699937` dans le fichier. Les gènes sont donc recherchés par leur identifiant de locus en fin de nom, et le script vérifie qu'une seule ligne correspond.
 
 Le script produit trois graphiques :
@@ -49,15 +49,12 @@ cd devoir1_BVG7003
 
 Les versions exactes des paquets nécessaires au fonctionnement de l'outil sont dans `renv.lock`. Voici la marche à suivre pour les installer avant d'exécuter l'outil :
 
-*Dans un terminal* (macOS, Linux, ou Windows si `Rscript` y est accessible), depuis la racine du dépôt :
+*Dans le terminal* (macOS, Linux, ou Windows si `Rscript` y est accessible), depuis la racine du dépôt :
 
 ```bash
 Rscript -e "renv::restore(prompt = FALSE)"
 ```
-
-Les guillemets doubles sont nécessaires : l'invite de commandes de Windows (y compris Anaconda Prompt) ne reconnaît pas les guillemets simples.
-
-*Windows, si `Rscript` n'est pas accessible depuis le terminal* — passer par RStudio :
+*Si `Rscript` n'est pas accessible depuis le terminal* — passer par RStudio :
 
 1. Ouvrir `devoir1.Rproj` dans RStudio.
 2. Dans la console de RStudio, exécuter `renv::restore()` et répondre `y` pour confirmer.
@@ -71,7 +68,6 @@ Le script doit être lancé depuis la racine du dépôt (ou via `devoir1.Rproj`)
 ```bash
 Rscript code/run_analysis.R
 ```
-
 *Windows, via RStudio* :
 
 1. Ouvrir `devoir1.Rproj`.
@@ -109,6 +105,13 @@ devoir1_BVG7003/
 
 ![Expression de REM16 et FT1 selon le sexe](figures/REM16_FT1_combined_by_sex.png)
 
-**Figure combinée.** Niveau d'expression normalisé de REM16 (gauche) et de FT1 (droite) chez les plantes femelles (XX, orange, n = 68) et mâles (XY, bleu, n = 69). Chaque point est une plante; les boîtes indiquent la médiane et l'écart interquartile. Les deux panneaux partagent la même échelle Y. L'unité de normalisation des données fournies n'est pas connue. La plante `011_XX` est exclue des deux gènes, car sa valeur de FT1 est manquante.
+**Figure combinée.** Niveau d'expression normalisé de REM16 (gauche) et de FT1 (droite) chez les plantes femelles (XX, orange, n = 68) et mâles (XY, bleu, n = 69). Chaque point correspond à une plante; les boîtes indiquent la médiane et l'écart interquartile. Les deux panneaux partagent la même échelle Y. L'unité de normalisation des données fournies n'est pas connue. La plante `011_XX` est exclue des deux gènes, car sa valeur de FT1 est manquante.
+
+**Interprétation.**
+
+- **REM16** : l'expression est plus élevée chez les femelles (médiane 10,49) que chez les mâles (médiane 8,68). Les deux distributions ne se chevauchent pas : la plus faible valeur femelle (10,00) dépasse la plus forte valeur mâle (9,38).
+- **FT1** : les distributions des deux sexes se chevauchent presque entièrement (médianes 6,62 et 6,63). FT1 ne distingue pas les sexes dans ces données.
+
+REM16 est donc un bon marqueur candidat du sexe, mais pas FT1.
 
 Les figures par gène sont dans [`figures/REM16_boxplot_by_sex.png`](figures/REM16_boxplot_by_sex.png) et [`figures/FT1_boxplot_by_sex.png`](figures/FT1_boxplot_by_sex.png). Les valeurs exactes représentées sont dans [`results/REM16_FT1_expression_long.csv`](results/REM16_FT1_expression_long.csv).
